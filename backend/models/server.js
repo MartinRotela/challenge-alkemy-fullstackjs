@@ -1,11 +1,13 @@
 const express = require('express');
 const db = require('../database/connection');
+const cors = require('cors');
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.dbConnection();
+        this.middlewares();
     }
 
     listen() {
@@ -23,6 +25,14 @@ class Server {
             console.log(error);
             throw new Error('An unexpected error ocurred');
         }
+    }
+
+    middlewares() {
+        //Cors
+        this.app.use(cors());
+
+        //Parse
+        this.app.use(express.json());
     }
 }
 

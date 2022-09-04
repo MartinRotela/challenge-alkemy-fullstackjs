@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
+const { JWTGen } = require('../helpers/jwt');
 const User = require('../models/users');
 
-const postUser = async (req, res) => {
+const registerUser = async (req, res) => {
     const { body } = req;
     try {
         const existeEmail = await User.findOne({
@@ -21,10 +22,15 @@ const postUser = async (req, res) => {
 
         user.password = bcrypt.hashSync(body.password, salt);
 
-        await User.create(user);
+        const newUser = await User.create(user);
+
+        const token = await JWTGen(newUser.id, newUser.name);
 
         res.json({
             msg: 'User created succesfully',
+            name: newUser.uid,
+            id: newUser.id,
+            token,
         });
     } catch (error) {
         console.log(error);
@@ -57,4 +63,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { postUser, deleteUser };
+module.exports = { registerUser, deleteUser };

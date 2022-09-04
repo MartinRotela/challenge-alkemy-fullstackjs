@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { postUser, deleteUser } = require('../controllers/user.controller');
+const { registerUser, deleteUser } = require('../controllers/user.controller');
 const fieldValidator = require('../middlewares/field-validator');
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post(
         }),
         fieldValidator,
     ],
-    postUser
+    registerUser
 );
 
 module.exports = router;

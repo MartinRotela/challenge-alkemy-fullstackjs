@@ -6,10 +6,11 @@ const {
     loginUser,
 } = require('../controllers/user.controller');
 const fieldValidator = require('../middlewares/field-validator');
+const { validateJWT } = require('../middlewares/jwt-validate');
 
 const router = Router();
 
-router.delete('/:id', deleteUser);
+router.delete('/:id', [validateJWT], deleteUser);
 router.post(
     '/new',
     [

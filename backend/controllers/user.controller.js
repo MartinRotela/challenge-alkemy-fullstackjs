@@ -29,7 +29,7 @@ const registerUser = async (req, res) => {
         res.json({
             msg: 'User created succesfully',
             name: newUser.uid,
-            id: newUser.id,
+            uid: newUser.id,
             token,
         });
     } catch (error) {
@@ -76,6 +76,13 @@ const loginUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const { id } = req.params;
+    const { uid } = req.body;
+
+    if (id != uid) {
+        return res.status(403).json({
+            msg: 'You do not have permission',
+        });
+    }
     try {
         const usuario = await User.findByPk(id);
 

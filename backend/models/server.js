@@ -3,6 +3,7 @@ const db = require('../database/connection');
 const cors = require('cors');
 
 const userRoutes = require('../routes/user.routes');
+require('../database/associations');
 
 class Server {
     constructor() {

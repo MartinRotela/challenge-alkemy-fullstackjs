@@ -3,7 +3,7 @@ const Entry = require('../models/Entry');
 const User = require('../models/user');
 
 Category.hasMany(Entry, { as: 'entries' });
-Entry.belongsTo(Category, { as: 'categoryId' });
+Entry.belongsTo(Category);
 
 User.hasMany(Entry, { as: 'entries' });
-Entry.belongsTo(User, { as: 'userId' });
+Entry.belongsTo(User);

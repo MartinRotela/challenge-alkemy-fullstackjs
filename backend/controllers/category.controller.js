@@ -22,6 +22,10 @@ const getCategoryByIdAndHisEntries = async (req, res) => {
             include: { model: Entry, as: 'entries', where: { UserId: uid } },
         });
 
+        if (!category) {
+            return res.status(404).json({ msg: 'Category not found' });
+        }
+
         res.json(category);
     } catch (error) {
         console.log(error);

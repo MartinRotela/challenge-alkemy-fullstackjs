@@ -3,6 +3,7 @@ const db = require('../database/connection');
 const cors = require('cors');
 
 const userRoutes = require('../routes/user.routes');
+const categoryRoutes = require('../routes/category.routes');
 require('../database/associations');
 
 class Server {
@@ -41,6 +42,7 @@ class Server {
 
     routes() {
         this.app.use('/api/users', userRoutes);
+        this.app.use('/api/categories', categoryRoutes);
     }
 }
 

@@ -17,11 +17,15 @@ const Entry = db.define('Entry', {
     type: {
         type: DataTypes.STRING,
         allowNull: false,
+
         validate: {
             notNull: { msg: 'Type can not be empty' },
+            isIn: {
+                args: [['income', 'expense']],
+            },
         },
     },
-    userId: {
+    UserId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -32,7 +36,7 @@ const Entry = db.define('Entry', {
             notNull: { msg: 'User is required' },
         },
     },
-    categoryId: {
+    CategoryId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

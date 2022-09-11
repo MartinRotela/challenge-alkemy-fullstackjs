@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const userRoutes = require('../routes/user.routes');
 const categoryRoutes = require('../routes/category.routes');
+const entryRoutes = require('../routes/entry.routes');
 require('../database/associations');
 
 class Server {
@@ -43,6 +44,7 @@ class Server {
     routes() {
         this.app.use('/api/users', userRoutes);
         this.app.use('/api/categories', categoryRoutes);
+        this.app.use('/api/entries', entryRoutes);
     }
 }
 

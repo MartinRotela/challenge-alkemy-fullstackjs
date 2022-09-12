@@ -4,13 +4,14 @@ const {
     registerUser,
     deleteUser,
     loginUser,
+    renewUser,
 } = require('../controllers/user.controller');
 const fieldValidator = require('../middlewares/field-validator');
 const { validateJWT } = require('../middlewares/jwt-validate');
 
 const router = Router();
 
-router.delete('/:id', [validateJWT], deleteUser);
+router.delete('/', [validateJWT], deleteUser);
 router.post(
     '/new',
     [
@@ -37,5 +38,7 @@ router.post(
     ],
     loginUser
 );
+
+router.get('/renew', [validateJWT], renewUser);
 
 module.exports = router;

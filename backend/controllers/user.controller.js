@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { JWTGen } = require('../helpers/jwt');
-const User = require('../models/users');
+const User = require('../models/user');
 
 const registerUser = async (req, res) => {
     const { body } = req;
@@ -75,16 +75,10 @@ const loginUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    const { id } = req.params;
     const { uid } = req.body;
 
-    if (id != uid) {
-        return res.status(403).json({
-            msg: 'You do not have permission',
-        });
-    }
     try {
-        const usuario = await User.findByPk(id);
+        const usuario = await User.findByPk(uid);
 
         if (!usuario) {
             return res.status(404).json({
@@ -104,4 +98,19 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, deleteUser, loginUser };
+const renewUser = async (req, res) => {
+    try {
+        const { uid, name } = req.body;
+
+        const token = await JWTGen(uid, name);
+
+        res.json({ token, uid, name });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'An unexpected error ocurred',
+        });
+    }
+};
+
+module.exports = { registerUser, deleteUser, loginUser, renewUser };

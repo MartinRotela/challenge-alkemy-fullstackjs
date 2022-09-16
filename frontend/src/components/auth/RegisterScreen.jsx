@@ -1,12 +1,17 @@
 import { Container, Row, Form, Button, Col } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { startRegister } from '../../store/slices/auth/thunks';
 
 export const RegisterScreen = () => {
+    const dispatch = useDispatch();
     const [values, setValues] = useForm();
 
     const onSubmit = (e) => {
         e.preventDefault();
+        const { name, email, password } = values;
+        dispatch(startRegister(name, email, password));
     };
     return (
         <Container className=" h-100">

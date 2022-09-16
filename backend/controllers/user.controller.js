@@ -27,8 +27,7 @@ const registerUser = async (req, res) => {
         const token = await JWTGen(newUser.id, newUser.name);
 
         res.json({
-            msg: 'User created succesfully',
-            name: newUser.uid,
+            name: newUser.name,
             uid: newUser.id,
             token,
         });

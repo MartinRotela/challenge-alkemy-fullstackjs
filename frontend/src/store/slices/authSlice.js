@@ -29,3 +29,6 @@ export const authSlice = createSlice({
         },
     },
 });
+
+export const { startLoadingUser, setUser, setErrorMessage, logout } =
+    authSlice.actions;

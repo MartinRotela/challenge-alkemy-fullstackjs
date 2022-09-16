@@ -20,6 +20,7 @@ export const RegisterScreen = () => {
                                 placeholder="Enter name"
                                 name="name"
                                 onChange={setValues}
+                                values={values.name}
                             />
                             <Form.Label>Email</Form.Label>
                             <Form.Control
@@ -27,6 +28,7 @@ export const RegisterScreen = () => {
                                 placeholder="Enter email"
                                 name="email"
                                 onChange={setValues}
+                                values={values.email}
                             />
                             <Form.Label>Password</Form.Label>
                             <Form.Control
@@ -34,6 +36,7 @@ export const RegisterScreen = () => {
                                 placeholder="Enter password"
                                 name="password"
                                 onChange={setValues}
+                                values={values.password}
                             />
                         </Form.Group>
                         <Button type="submit" variant="dark" className="mt-2">

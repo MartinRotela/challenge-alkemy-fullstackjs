@@ -1,11 +1,16 @@
 import { Container, Row, Form, Button, Col } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { startLogin } from '../../store/slices/auth/thunks';
 
 export const LoginScreen = () => {
+    const dispatch = useDispatch();
     const [values, setValues] = useForm();
     const onSubmit = (e) => {
         e.preventDefault();
+        const { email, password } = values;
+        dispatch(startLogin(email, password));
     };
     return (
         <Container className=" h-100">
@@ -19,6 +24,7 @@ export const LoginScreen = () => {
                                 placeholder="Enter email"
                                 name="email"
                                 onChange={setValues}
+                                value={values.email}
                             />
                             <Form.Label>Password</Form.Label>
                             <Form.Control
@@ -26,6 +32,7 @@ export const LoginScreen = () => {
                                 placeholder="Enter password"
                                 name="password"
                                 onChange={setValues}
+                                value={values.password}
                             />
                         </Form.Group>
                         <Button type="submit" variant="dark" className="mt-2">

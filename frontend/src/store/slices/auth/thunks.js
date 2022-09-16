@@ -45,3 +45,18 @@ export const startRegister = (name, email, password) => {
         }
     };
 };
+
+export const startChecking = () => {
+    return async (dispatch) => {
+        const token = localStorage.getItem('token');
+        const { data } = await financesApi.get('/users/renew', {
+            headers: {
+                'x-token': token,
+            },
+        });
+        const { token: newToken, ...userData } = data;
+        localStorage.clear();
+        localStorage.setItem('token', newToken);
+        dispatch(setUser(userData));
+    };
+};

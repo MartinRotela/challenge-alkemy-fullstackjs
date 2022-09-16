@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Container, Row, Form, Button, Col } from 'react-bootstrap';
+import { Container, Row, Form, Button, Col, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
@@ -38,6 +38,11 @@ export const LoginScreen = () => {
                                 value={values.password}
                             />
                         </Form.Group>
+                        {errorMessage && (
+                            <Alert className="mt-2" variant="danger">
+                                {errorMessage}
+                            </Alert>
+                        )}
                         <Button
                             type="submit"
                             variant="dark"

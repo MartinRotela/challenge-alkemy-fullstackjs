@@ -52,7 +52,7 @@ export const LoginScreen = () => {
                             Login
                         </Button>
                     </Form>
-                    <Link to="/register" className="text-reset">
+                    <Link to="/auth/register" className="text-reset">
                         Register
                     </Link>
                 </Col>

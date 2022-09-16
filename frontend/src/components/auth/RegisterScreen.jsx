@@ -61,7 +61,7 @@ export const RegisterScreen = () => {
                             Register
                         </Button>
                     </Form>
-                    <Link to="/login" className="text-reset">
+                    <Link to="/auth/login" className="text-reset">
                         Login
                     </Link>
                 </Col>

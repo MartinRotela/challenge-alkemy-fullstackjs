@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { startChecking } from '../../store/slices/auth/thunks';
 import { HomeScreen } from '../home/HomeScreen';
 import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
@@ -8,6 +9,12 @@ import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
     const { uid } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(startChecking());
+    }, [dispatch]);
+
     return (
         <BrowserRouter>
             <Routes>

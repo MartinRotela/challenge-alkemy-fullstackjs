@@ -16,6 +16,7 @@ const User = db.define('User', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: { msg: 'Email already taken' },
         validate: {
             notNull: { msg: 'Email can not be empty' },
             isEmail: { msg: 'Invalid Email' },

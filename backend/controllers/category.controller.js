@@ -33,4 +33,14 @@ const getCategoryByIdAndHisEntries = async (req, res) => {
     }
 };
 
-module.exports = { getCategories, getCategoryByIdAndHisEntries };
+//TODO: Delete post Category
+
+const postCategory = async (req, res) => {
+    const { name } = req.body;
+
+    const newCategory = await Category.create({ name });
+
+    res.json(newCategory);
+};
+
+module.exports = { getCategories, getCategoryByIdAndHisEntries, postCategory };

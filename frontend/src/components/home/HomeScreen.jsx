@@ -17,7 +17,6 @@ export const HomeScreen = () => {
 
     return (
         <>
-            <NavBar />
             <Container>
                 <Row className="d.flex justify-content-center">
                     <Col xl={6} className="d.flex justify-content-center">

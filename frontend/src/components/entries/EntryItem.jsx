@@ -1,12 +1,16 @@
-import React from 'react';
+import moment from 'moment';
 
-export const EntryItem = () => {
+export const EntryItem = ({ description, type, amount, createdAt }) => {
+    const value = type === 'expense' ? '-' : '+';
+    const date = moment(createdAt).format('MMMM Do, YYYY');
     return (
         <>
             <tr>
-                <td>+ $250</td>
-                <td>"Deposito" </td>
-                <td>25/7/2022</td>
+                <td>
+                    {value} ${amount}
+                </td>
+                <td>{description} </td>
+                <td>{date}</td>
             </tr>
         </>
     );

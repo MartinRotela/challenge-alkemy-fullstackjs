@@ -1,7 +1,10 @@
 import { Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { EntryItem } from './EntryItem';
 
 export const EntriesList = () => {
+    const { entries, isLoading } = useSelector((state) => state.entries);
+
     return (
         <Table>
             <thead>
@@ -12,10 +15,9 @@ export const EntriesList = () => {
                 </tr>
             </thead>
             <tbody>
-                <EntryItem />
-                <EntryItem />
-                <EntryItem />
-                <EntryItem />
+                {entries.map((entry) => (
+                    <EntryItem key={entry.id} {...entry} />
+                ))}
             </tbody>
         </Table>
     );

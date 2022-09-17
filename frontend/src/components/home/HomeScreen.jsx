@@ -1,8 +1,18 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { EntriesList } from '../entries/EntriesList';
 import { NavBar } from '../ui/NavBar';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { startSettingEntries } from '../../store/slices/entries/thunks';
 
 export const HomeScreen = () => {
+    const dispatch = useDispatch();
+    const { balance } = useSelector((state) => state.entries);
+
+    useEffect(() => {
+        dispatch(startSettingEntries());
+    }, [dispatch]);
+
     return (
         <>
             <NavBar />
@@ -10,7 +20,7 @@ export const HomeScreen = () => {
                 <Row className="d.flex justify-content-center">
                     <Col xl={6} className="d.flex justify-content-center">
                         <h1 className="text-center font-weight-bold mb-5">
-                            $0.00
+                            ${balance.toFixed(2)}
                         </h1>
                         <EntriesList />
                     </Col>

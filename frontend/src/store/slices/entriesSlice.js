@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const entriesSlice = createSlice({
-    name: 'auth',
+    name: 'entries',
     initialState: {
         entries: [],
         isLoading: false,

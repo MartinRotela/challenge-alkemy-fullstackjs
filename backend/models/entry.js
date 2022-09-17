@@ -8,7 +8,7 @@ const Entry = db.define('Entry', {
         type: DataTypes.STRING,
     },
     amount: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
         validate: {
             notNull: { msg: 'Amount can not be empty' },

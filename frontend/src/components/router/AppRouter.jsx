@@ -5,6 +5,7 @@ import { startChecking } from '../../store/slices/auth/thunks';
 import { HomeScreen } from '../home/HomeScreen';
 import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
+import { PrivateRouter } from './PrivateRouter';
 import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
@@ -27,10 +28,10 @@ export const AppRouter = () => {
                     }
                 />
                 <Route
-                    path="/"
+                    path="/*"
                     element={
                         <PrivateRoute isAuth={!!uid}>
-                            <HomeScreen />
+                            <PrivateRouter />
                         </PrivateRoute>
                     }
                 />

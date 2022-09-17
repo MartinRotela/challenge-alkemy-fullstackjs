@@ -4,6 +4,7 @@ import { NavBar } from '../ui/NavBar';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSettingEntries } from '../../store/slices/entries/thunks';
+import { startSettingCategories } from '../../store/slices/categories/thunks';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export const HomeScreen = () => {
 
     useEffect(() => {
         dispatch(startSettingEntries());
+        dispatch(startSettingCategories());
     }, [dispatch]);
 
     return (

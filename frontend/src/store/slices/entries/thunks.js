@@ -7,7 +7,7 @@ import {
     startLoadingEntries,
 } from '../entriesSlice';
 
-export const startSettingEntries = (email, password) => {
+export const startSettingEntries = () => {
     return async (dispatch) => {
         try {
             dispatch(startLoadingEntries());

@@ -6,7 +6,7 @@ import {
     startLoadingCategories,
 } from '../categoriesSlice';
 
-export const startSettingCategories = (email, password) => {
+export const startSettingCategories = () => {
     return async (dispatch) => {
         try {
             dispatch(startLoadingCategories());

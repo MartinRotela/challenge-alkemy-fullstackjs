@@ -6,6 +6,7 @@ export const entriesSlice = createSlice({
         entries: [],
         isLoading: false,
         errorMessage: '',
+        balance: 0,
     },
     reducers: {
         startLoadingEntries: (state) => {
@@ -16,6 +17,9 @@ export const entriesSlice = createSlice({
             state.errorMessage = '';
             state.entries = action.payload;
         },
+        setBalance: (state, action) => {
+            state.balance = action.payload;
+        },
         setErrorMessage: (state, action) => {
             state.isLoading = false;
             state.errorMessage = action.payload;
@@ -23,5 +27,5 @@ export const entriesSlice = createSlice({
     },
 });
 
-export const { startLoadingEntries, setEntries, setErrorMessage } =
+export const { startLoadingEntries, setEntries, setBalance, setErrorMessage } =
     entriesSlice.actions;

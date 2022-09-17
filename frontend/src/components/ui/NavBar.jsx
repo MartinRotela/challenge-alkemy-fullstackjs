@@ -1,7 +1,9 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
+    const { name } = useSelector((state) => state.auth);
     return (
         <>
             <Navbar bg="dark" variant="dark" className="mb-4">
@@ -17,6 +19,7 @@ export const NavBar = () => {
                             Categories
                         </Nav.Link>
                     </Nav>
+                    <Navbar.Text>{name}</Navbar.Text>
                 </Container>
             </Navbar>
             <br />

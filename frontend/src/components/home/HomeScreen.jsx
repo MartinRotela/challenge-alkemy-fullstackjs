@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSettingEntries } from '../../store/slices/entries/thunks';
 import { startSettingCategories } from '../../store/slices/categories/thunks';
+import { AppModal } from '../ui/modal/AppModal';
+import { AddNewButton } from '../ui/buttons/AddNewButton';
 
 export const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export const HomeScreen = () => {
     return (
         <>
             <Container>
+                <AppModal />
                 <Row className="d.flex justify-content-center">
                     <Col xl={6} className="d.flex justify-content-center">
                         <h1 className="text-center font-weight-bold mb-5">
@@ -26,6 +29,7 @@ export const HomeScreen = () => {
                         <EntriesList />
                     </Col>
                 </Row>
+                <AddNewButton />
             </Container>
         </>
     );

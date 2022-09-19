@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
 import { Table } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { startSetBalance } from '../../store/slices/entries/thunks';
 import { EntryItem } from './EntryItem';
 
 export const EntriesList = () => {
     const { entries, isLoading } = useSelector((state) => state.entries);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(startSetBalance());
+    }, [dispatch, entries]);
 
     return (
         <Table>

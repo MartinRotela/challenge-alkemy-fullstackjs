@@ -19,6 +19,7 @@ export const entriesSlice = createSlice({
         },
         setBalance: (state, action) => {
             state.balance = action.payload;
+            state.isLoading = false;
         },
         setErrorMessage: (state, action) => {
             state.isLoading = false;

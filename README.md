@@ -4,4 +4,4 @@ Challenge realizado para la aceleracion de talento de Alkemy para desarrolladore
 
 Este proyecto fue creado utilizando Mern Stack.
 
-Algunas funcionalidades no fueron creadas por falta de tiempo.
+Algunas funcionalidades no fueron implementadas por falta de tiempo.

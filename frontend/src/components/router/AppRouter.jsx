@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { startChecking } from '../../store/slices/auth/thunks';
+import { LoadingScreen } from '../ui/loading/LoadingScreen';
 import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
-    const { uid } = useSelector((state) => state.auth);
+    const { uid, isLoading } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-
+    const loading = useMemo(() => isLoading, [isLoading]);
     useEffect(() => {
         dispatch(startChecking());
     }, [dispatch]);
 
-    return (
+    return loading ? (
+        <LoadingScreen />
+    ) : (
         <BrowserRouter>
             <Routes>
                 <Route

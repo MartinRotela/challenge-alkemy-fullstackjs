@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { CategoriesScreen } from '../categories/CategoriesScreen';
 import { HomeScreen } from '../home/HomeScreen';
-import { NavBar } from '../ui/NavBar';
+import { NavBar } from '../ui/navbar/NavBar';
 
 export const PrivateRouter = () => {
     return (

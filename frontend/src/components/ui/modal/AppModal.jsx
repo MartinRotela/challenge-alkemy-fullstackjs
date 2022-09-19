@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     startAddNewEntry,
     startDeleteEntry,
+    startSetBalance,
     startUpdateEntry,
 } from '../../../store/slices/entries/thunks';
 import { closeModal } from '../../../store/slices/modalSlice';
@@ -20,7 +21,6 @@ export const AppModal = () => {
         type: '',
     };
     const [formValues, setFormValues] = useState(initialState);
-
     useEffect(() => {
         if (activeEntry) {
             setFormValues(activeEntry);
@@ -42,23 +42,25 @@ export const AppModal = () => {
         dispatch(closeModal());
     };
 
-    const handleSave = () => {
+    const handleSave = (e) => {
         if (activeEntry) {
-            dispatch(startUpdateEntry(id, { description, amount }));
+            dispatch(startUpdateEntry(id, { description, amount, CategoryId }));
         } else {
             dispatch(startAddNewEntry(formValues));
         }
+        dispatch(startSetBalance());
         dispatch(closeModal());
     };
 
     const handleDelete = () => {
         dispatch(startDeleteEntry(id));
+        dispatch(startSetBalance());
         dispatch(closeModal());
     };
 
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} id="createAndModifyForm">
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {activeEntry ? 'Modify Entry' : 'New Entry'}
@@ -69,6 +71,7 @@ export const AppModal = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Description</Form.Label>
                             <Form.Control
+                                required
                                 type="text"
                                 placeholder="Enter a description..."
                                 value={description}
@@ -85,6 +88,7 @@ export const AppModal = () => {
                                 name="type"
                                 onChange={handleInputChange}
                                 disabled={activeEntry}
+                                required
                             >
                                 <option value="income">Income</option>
                                 <option value="expense">Expense</option>
@@ -97,6 +101,7 @@ export const AppModal = () => {
                                 value={CategoryId}
                                 name="CategoryId"
                                 onChange={handleInputChange}
+                                required
                             >
                                 {categories.map((category) => (
                                     <option
@@ -117,6 +122,7 @@ export const AppModal = () => {
                                 name="amount"
                                 value={amount}
                                 onChange={handleInputChange}
+                                required
                             />
                         </Form.Group>
                     </Form>

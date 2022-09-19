@@ -18,16 +18,11 @@ export const startSettingEntries = () => {
             const { data } = await financesApi.get('/entries/', {
                 headers: { 'x-token': token },
             });
-            const { data: balanceData } = await financesApi.get(
-                '/entries/balance',
-                {
-                    headers: { 'x-token': token },
-                }
-            );
-            const { balance } = balanceData;
+
+            dispatch(startSetBalance());
+
             const { entries } = data;
             dispatch(setEntries(entries));
-            dispatch(setBalance(balance));
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const err = error.response.data;
@@ -37,6 +32,21 @@ export const startSettingEntries = () => {
                 throw new Error('An unexpected error ocurred');
             }
         }
+    };
+};
+
+export const startSetBalance = () => {
+    return async (dispatch) => {
+        dispatch(startLoadingEntries());
+        const token = localStorage.getItem('token');
+        const { data: balanceData } = await financesApi.get(
+            '/entries/balance',
+            {
+                headers: { 'x-token': token },
+            }
+        );
+        const { balance } = balanceData;
+        dispatch(setBalance(balance));
     };
 };
 
